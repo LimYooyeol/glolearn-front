@@ -27,7 +27,8 @@
         unmounted(){},
         methods:{
             loginWithKakao() {
-    
+                const url = new URL(document.location.href)
+
                 try{
                     window.Kakao.init('39820925f96876b00bbdc22a850605f9')  
                 }catch(err){
@@ -36,7 +37,7 @@
     
                 try{
                     window.Kakao.Auth.authorize({
-                        redirectUri: 'http://localhost:8080/authentication',
+                        redirectUri: 'http://localhost:8080/authentication?redirectUri=' + url.searchParams('redirectUri'),
                     });
                 }catch(err){
                     console.log(err);
